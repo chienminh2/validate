@@ -108,7 +108,7 @@
         rules: [
           Validator.isRequired('#fullname','Vui lòng nhập tên của bạn'),
           Validator.isRequired('input[name="gender"]'),
-          //Validator.isRequired('#province'),
+          Validator.isRequired('#province'),
           Validator.isEmail('#email','Trường này phải là email'),
           Validator.minLength('#password',6),
           Validator.isRequired('#password_confirmation', 'Vui lòng nhập lại mật khẩu'),
