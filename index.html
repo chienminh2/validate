@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validator</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <form action="" method="POST" class="form" id="form-1">
+        <h3 class="heading">Thành viên đăng ký</h3>
+        <p class="desc">Cùng nhau học lập trình miễn phí tại F8 ❤️</p>
+
+        <div class="spacer"></div>
+
+        <div class="form-group">
+          <label for="fullname" class="form-label">Tên đầy đủ</label>
+          <input
+            id="fullname"
+            name="fullname"
+            type="text"
+            placeholder="VD: Sơn Đặng"
+            class="form-control"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="VD: email@domain.com"
+            class="form-control"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Mật khẩu</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Nhập mật khẩu"
+            class="form-control"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password_confirmation" class="form-label"
+            >Nhập lại mật khẩu</label
+          >
+          <input
+            id="password_confirmation"
+            name="password_confirmation"
+            placeholder="Nhập lại mật khẩu"
+            type="password"
+            class="form-control"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <!-- <div class="form-group">
+          <label for="province" class="form-label">Tỉnh thành</label>
+        <select id="province" class="form-control">
+          <option value="">--Chọn tỉnh/Thành</option>
+          <option value="hanoi">Hà Nội</option>
+          <option value="tphcm">TPHCM</option>
+          <option value="dn">Đà Nẵng</option>
+        </select>
+          <span class="form-message"></span>
+        </div> -->
+
+        <div class="form-group form-group--mg">
+          <label class="form-label">Giới tính</label>
+          <div class="label">
+            <label class="label-form">
+              <input name="gender" type="checkbox" value="male" class="form-control form-control--height" />
+              Nam
+            </label>
+            <label class="label-form">
+              <input name="gender" type="checkbox" value="female" class="form-control form-control--height" />
+              Nữ
+            </label>
+            <label class="label-form">
+              <input name="gender" type="checkbox" value="other" class="form-control form-control--height" />
+              Khác
+            </label>
+          </div>
+          <span class="form-message"></span>
+        </div>
+
+        <button class="form-submit">Đăng ký</button>
+      </form>
+    </div>
+
+    <script src="test.js"></script>
+    <script>
+      Validator({
+        form: '#form-1',
+        selectorFormGroup: '.form-group',
+        selectorElement: '.form-message',
+        rules: [
+          Validator.isRequired('#fullname','Vui lòng nhập tên của bạn'),
+          Validator.isRequired('input[name="gender"]'),
+          //Validator.isRequired('#province'),
+          Validator.isEmail('#email','Trường này phải là email'),
+          Validator.minLength('#password',6),
+          Validator.isRequired('#password_confirmation', 'Vui lòng nhập lại mật khẩu'),
+          Validator.isConfirm('#password_confirmation',function() {
+            return document.querySelector('#form-1 #password').value; 
+          }, 'Mật khẩu nhập không chính xác'),
+        ],
+        onSubmit: function(data) {
+          console.log(data)
+        }
+      })
+    </script>
+  </body>
+</html>
